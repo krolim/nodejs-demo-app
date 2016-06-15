@@ -1,0 +1,7 @@
+---
+applications:
+- name: demo-nodejs
+  command: node main.js
+  memory: 128M
+  instances: 1
+  path: .

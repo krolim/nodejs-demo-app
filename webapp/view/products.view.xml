@@ -1,0 +1,60 @@
+<mvc:View
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: '/',
+			sorter: {
+				path: 'name'
+			}
+		}">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="Products" level="H2"/>
+				<ToolbarSpacer/>
+				<content>
+					<Button
+						icon="sap-icon://add"
+						tooltip="add new product"
+						press="onNewButtonPress"
+						 />
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Name" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Type" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Left">
+				<Text text="Description" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{name}" />
+					<Select selectedKey="{type}" enabled="false" vAlign="center">
+						<items>
+							<core:Item key="clothes" text="Clothes" />
+							<core:Item key="food" text="Food" />
+							<core:Item key="electronics" text="Electronics" />
+						</items>
+					</Select>
+					<Text text="{description}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

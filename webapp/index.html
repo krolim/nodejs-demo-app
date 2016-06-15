@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Products</title>
+    <script
+      id="sap-ui-bootstrap"
+      src="/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_bluecrystal"
+      data-sap-ui-libs="sap.m"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-resourceroots='{ "sap.nodejs.demo": "./" }'
+    >
+    </script>
+    <script>
+      function loadAllProducts() {
+        oModel.loadData("/products");  
+      }
+
+      function onNewButtonPress(oEvent) {
+        var newProductModel = new sap.ui.model.json.JSONModel({
+          name : "",
+          type  : "",
+          description   : ""
+        });
+        var addproductview = new sap.ui.core.mvc.XMLView({ viewName : "sap.nodejs.demo.view.add" });
+        addproductview.setModel(newProductModel);
+        var dialog = new sap.m.Dialog({
+          title: 'Add New Product',
+          content: addproductview,
+          beginButton: new sap.m.Button({
+            text: 'Save',
+            press: function () {
+              $.ajax({
+                  url: '/products',
+                  type: 'post',
+                  data: newProductModel.getJSON(),
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  success: function (data) {
+                      loadAllProducts();
+                  }
+              });
+              dialog.close();
+            }
+          }),
+          afterClose: function() {
+            dialog.destroy();
+          }
+       });
+        dialog.open();
+      }
+
+      var oModel = new sap.ui.model.json.JSONModel();
+      loadAllProducts();
+
+      // Display the XML view called "App"
+      var view = new sap.ui.core.mvc.XMLView({ viewName : "sap.nodejs.demo.view.products" });
+      view.setModel(oModel);
+      view.placeAt("content");
+    </script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>
