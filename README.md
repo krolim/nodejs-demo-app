@@ -2,17 +2,18 @@
 
 ## Run on Cloud Foundry
 
-cf push
-
+```bash
 cf create-service mongodb v3.0-container demodb
 
-cf bind-service demo-nodejs demodb
+cf push
 
 cf restage demo-nodejs
+```
 
 ## Run locally
 
+```bash
 npm install
 node main.js
-
+```
 (access on http://localhost:3000)
