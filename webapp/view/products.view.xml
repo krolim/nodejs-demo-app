@@ -45,13 +45,7 @@
 			<ColumnListItem>
 				<cells>
 					<Text text="{name}" />
-					<Select selectedKey="{type}" enabled="false" vAlign="center">
-						<items>
-							<core:Item key="clothes" text="Clothes" />
-							<core:Item key="food" text="Food" />
-							<core:Item key="electronics" text="Electronics" />
-						</items>
-					</Select>
+					<Text text="{type}" />
 					<Text text="{description}" />
 				</cells>
 			</ColumnListItem>
