@@ -24,6 +24,7 @@
 				<Label text="Type" />
 				<Select selectedKey="{/type}" width="150px" valueLiveUpdate="true">
 					<items>
+						<core:Item key="NA" text="-----" />
 						<core:Item key="clothes" text="Clothes" />
 						<core:Item key="food" text="Food" />
 						<core:Item key="electronics" text="Electronics" />
